@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.jeecms.sch.common.entity">
+	<class name="SchSubject" table="sch_subject">
+		<id name="id" column="id" type="string">
+			<generator class="uuid" />
+		</id>
+		<property name="type" column="type" type="string" />
+		<property name="period" column="period" type="string" />
+		<property name="gradeRanking" column="grade_ranking" type="integer" />
+		<property name="classsRanking" column="classs_ranking" type="integer" />
+		<property name="valid" column="valid" type="java.lang.Boolean" />
+		
+		<property name="englishSc"  column="english_sc" type="java.lang.Double" />
+		<property name="chineseSc"  column="chinese_sc" type="java.lang.Double" />
+		<property name="mathSc"  column="math_sc" type="java.lang.Double" />
+		<property name="biologySc"  column="biology_sc" type="string" />
+		<property name="physicsSc"  column="physics_sc" type="string" />
+		<property name="chemistrySc"  column="chemistry_sc" type="string" />
+		<property name="historySc"  column="history_sc" type="string" />
+		<property name="politicsSc"  column="politics_sc" type="string" />
+		<property name="geographySc"  column="geography_sc" type="string" />
+		<property name="musicSc"  column="music_sc" type="string" />
+		<property name="sportsSc"  column="sports_sc" type="string" />
+		<property name="moralSc"  column="moral_sc" type="string" />
+		<property name="artSc"  column="art_sc" type="string" />
+		<property name="ysyScore"  column="ysy_score" type="java.lang.Double" />
+		<property name="totalScore"  column="total_score" type="java.lang.Double" />
+		
+		
+		<many-to-one name="schl" column="school_id" class="Schools" lazy="false"/>
+		<many-to-one name="stud" column="stud_id" class="SchStudents" lazy="false"/>
+		<!-- <property name="path" column="path" type="integer" /> -->
+	</class>
+</hibernate-mapping>

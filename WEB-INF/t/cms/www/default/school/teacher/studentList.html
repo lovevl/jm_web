@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>学生信息录入</title>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="${base}/mrhweb/css/teachers/base.css">
+    <link rel="stylesheet" href="${base}/mrhweb/css/base/style.css">
+    <link rel="stylesheet" href="${base}/mrhweb/css/base/resLogBg.css">
+    <link rel="stylesheet" href="${base}/mrhweb/css/teachers/stuInfo.css">
+   <!--  <link rel="stylesheet" href="js/footable/css/footable.core.css?v=2-0-1">
+    <link rel="stylesheet" href="js/footable/css/footable.standalone.css">
+    <link rel="stylesheet" href="js/footable/css/footable-demos.css"> -->
+    <style>
+        /*body {*/
+            /*background: url("img/login_bg.jpg") 50% 0 no-repeat fixed;*/
+        /*}*/
+        
+
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#"><span style="color: #98c93c">Sch</span><span
+                    style="color:#3ec1ce ">ool</span></a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="navbar-collapse-1">
+
+            <ul class="nav navbar-nav navbar-right">
+                <li class="active"><a href="#">学生信息录入</a></li>
+                <li><a href="#">学生成绩录入</a></li>
+                <li><a href="#">学生成绩查看</a></li>
+                <li><a href="#">变更任课教师</a></li>
+
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">个人中心 <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Action</a></li>
+                        <li><a href="#">Another action</a></li>
+                        <li><a href="#">Something else here</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#">Separated link</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+
+<div class="container-fluid min-height">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 ">
+                <div class="teacher-box">
+                    <h5>· 你所在班级：<mark>${(loginTeacher.schl.name)!}</mark> <mark><@d_write dictType="gradeType" dictValue="${(loginTeacher.grade)!}"/></mark> 
+                 <mark>${(loginTeacher.classs)!}班</mark> <mark><@d_write dictType="subjectType" dictValue="${(loginTeacher.type)!}"/></strong>老师
+
+</h5>
+                    <!-- <div class="student-msg"><p>&nbsp;&nbsp;该班级现有学生共40名</p></div> -->
+                    <hr>
+                    <!--<div class="pull-right">-->
+                        <!--<button type="button" class="btn btn-info btn-xs">添加一名学生</button>-->
+                    <!--</div>-->
+                    <!--<button id="addNewStu" type="button" class="btn btn-info btn-xs">加一个</button>-->
+                    <form id="stuFormId" method="post" action="${base}/teacher/savestus.json" onsubmit="return submitForm(this);">
+                          <#if stus??> 
+                    		<div class="form-group"><label>学生查询成绩的初始密码：</label>
+                          	<input type="hidden" name="pwd" value="${loginTeacher.stuPwd}">
+                          	<label>${(loginTeacher.stuPwd)!}</label>
+                          <#else>
+                          	<div class="form-group"><label>设置一个学生查询成绩的初始密码：</label>
+                          	<input type="text" name="pwd">
+                          	<label class="pwd-msg">初始密码设置后不可更改</label>
+                          </#if>
+                       </div>
+                       <div class="form-group">
+                           
+                           <#if stus??>
+                           <label>入学年份：</label>
+                           <input type="hidden" name="period" value="${stus[0].period}">
+                           <label>${stus[0].period}</label>
+                           <!-- <button type="button" class="btn btn-xs" onclick="changePeriod(this)">修改</button> -->
+                           <#else>
+                           <label>现在是：</label>
+                           <select class="" name="term" id="period_id">
+                           <option value="1">上学期</option>
+                           <option value="2">下学期</option>
+                           </select>
+                           </#if>
+                       </div>
+                        <table id="footable-res2" class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th class="col-xs-2 col-md-2">序号</th>
+                                    <th class="col-xs-2 col-md-2">学号</th>
+                                    <th class="col-xs-4 col-md-4">名字</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            <#if stus??>
+                            <#list stus as s>
+                            	<tr>
+                                    <td class="disabled" data-id="${s.id}"><figure><figcaption></figcaption></figure></td>
+                                    <td class="disabled"><input type="text" readonly="readonly" value="${(s.studyNum)!}"></td>
+                                    <td class="disabled"><input type="text" readonly="readonly" value="${(s.name)!}"></td>
+                                    <td><button type="button" class="btn btn-xs btn-info" onclick="edit(this);">编辑</button><button type="button" class="btn btn-danger btn-xs" onclick="deleteit(this);">删除</button>
+                                    </td>
+                                </tr>
+                            </#list>
+                            
+                            </#if>
+                            	<tr>
+                                    <td ><figure><figcaption></figcaption></figure></td>
+                                    <td><input type="text" name="stus[0].studyNum"></td>
+                                    <td><input type="text" name="stus[0].name"></td>
+                                    <td><button  type="button" class="btn btn-success btn-xs" onclick="addNew(this);">加一个</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <button type="submit" class="hidden">提交</button>
+                    </form>
+                    </div>
+        </div>
+    </div>
+</div>
+<footer class="l-footer">
+    <p class="text-center sm-text">
+        <small>xm.mrh🍓提供技术支持</small>
+    </p>
+</footer>
+
+<script src="${base}/js_lib/jquery/jquery-2.1.4.min.js"></script>
+<script src="${base}/mrhweb/js/commonJs/base.js"></script>
+<script src="${base}/r/cms/jquery.js"></script>
+<script src="${base}/mrhweb/js/commonJs/mrh.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+<script src="${base}/mrhweb/js/teacher/checkbox/svgcheckbx.js"></script>
+<!--<script src="js/footable/js/footable.js?v=2-0-1"></script>-->
+<!--<script src="js/footable/js/footable.sort.js?v=2-0-1"></script>-->
+<script type="text/javascript">
+    $('.min-height').css('min-height', client().height - 102 + "px");
+    $(function () {
+        stuL = {
+        	idx : 1,
+        	$form : $('#stuFormId'),
+        	$period : $('form select[name=period]'),
+            $table : $('#footable-res2'),
+            $tbody : $('#footable-res2 tbody'),
+            $btns : $('#footable-res2 tbody tr button[type=button]')
+        };
+
+        var tdL = $("#footable-res2").find('tbody tr:last td:last')[0];
+       // console.log(stuL.$btns);
+
+    });
+  
+    
+    var doSaveSuccess = function(data){
+    	if(data.result == true){
+    		window._MRHLoader.slowDestroy(500,"保存成功");
+    		window.setTimeout(function() {
+				window.location.href = window._BasePath +"/teacher/stuInfo.jspx" ;
+			}, 500);
+    	}
+    }
+    
+    
+    var submitForm = function(form){
+    	preventDef();
+    	form.action = window._BasePath + "/teacher/savestus.json";
+    	ajaxSubmitForm(form, doSaveSuccess);
+    	return false;
+    }
+    
+    var addNew = function (obj,token,id) {
+        var $p = $(obj).parents("tr");
+        if($.trim($p.find('td:eq(2) input').val()) == ""){
+            console.log("s");
+        }else{
+            //$p.find('td:not(:last-child)').addClass("disabled");
+            $p.find('td:eq(1) input').attr("readonly","readonly");
+            $p.find('td:eq(2) input').attr("readonly","readonly");
+            $(obj).text("编辑").attr("onclick","edit(this);").removeClass("btn-success").addClass("btn-info");
+            if(!token){
+                $p.find('td:last-child')
+                    .append($('<button  type="button" class="btn btn-danger btn-xs" onclick="deleteit(this);">删除</button>'));
+
+                var idx = parseInt($p.find('td:first-child').text());
+                if(!$p.next().length){
+                    var $td1 = $('<td><figure><figcaption></figcaption></figure></td>');
+                    var $td2 = $('<td><input type="text" name="stus['+stuL.idx+'].studyNum"></td>');
+                    var $td3 = $('<td><input type="text" name="stus['+stuL.idx+'].name"></td>');
+                    var $td4 = $('<td><button  type="button" class="btn btn-success btn-xs" onclick="addNew(this);">加一个</button></td>')
+                    var $tr = $('<tr></tr>');
+                    $tr.append($td1).append($td2).append($td3).append($td4);
+                    stuL.idx++;
+                    stuL.$tbody.append($tr);
+                }
+                stuL.$form.find('button[type=submit]').removeClass("hidden");
+            }else {
+                $(obj).next().removeClass("hidden");
+                if(id){
+                	$.ajax({
+	            	url : window._BasePath + "/teacher/editstu.json",
+	            	data : {id : id,studyNum : $p.find('td:eq(1) input').val(),name : $p.find('td:eq(2) input').val()},
+	            	type : "post",
+	            	success : function(data){
+	            		if(data.result==true){
+	            			window._MRHLoader.slowDestroy(500,"修改成功");
+	            		}
+	            	}
+	            	});
+                }
+            }
+        }
+
+    };
+    var edit = function (obj) {
+    	var $obj = $(obj);
+        var $p = $obj.parents("tr");
+        var id = $p.find('td:first-child').data('id');
+        if($.trim($p.find('td:eq(2) input').val()) == ""){
+        //空字符提示框
+            console.log("s");
+        }else {
+            $p.find('td:not(:last-child)').removeClass("disabled");
+            $p.find('td:eq(1) input').removeAttr("readonly");
+            $p.find('td:eq(2) input').removeAttr("readonly");
+            $obj.next().addClass('hidden');
+            $obj.text("完成").removeClass("btn-success").addClass("btn-info");
+            if($p.find('td:first-child').data('id')){
+            	var id = $p.find('td:first-child').data('id');
+           		$obj.attr("onclick", "addNew(this,'token','"+id+"');");
+	        }else{
+	        	$obj.attr("onclick", "addNew(this,'token');");
+	        }
+        }
+    };
+    
+    var deleteit = function (obj) {
+        //判断第一个td有没有data-id属性。有用ajax传输后台删除。没有就直接删除
+        var $p = $(obj).parents("tr");
+        var id = $p.find('td:first-child').data('id');
+        if(!id){
+            pMove($p);
+        }else{
+            $.ajax({
+            	url : window._BasePath + "/teacher/deletestu.json",
+            	data : {id : id},
+            	type : "post",
+            	success : function(data){
+            		if(data.result==true){
+            			window._MRHLoader.slowDestroy(500,"删除成功");
+            			pMove($p);
+            		}
+            	}
+            });
+        }
+    };
+	
+	var pMove = function($p){
+		if($p.parent().find('td:first-child:not(td[data-id])').size()<=2){
+			stuL.$form.find('button[type=submit]').addClass("hidden");
+		};
+		$p.remove();
+	}
+
+</script>
+</body>
+</html>

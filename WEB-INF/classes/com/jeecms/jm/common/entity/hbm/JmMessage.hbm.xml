@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.jeecms.jm.common.entity">
+	<class name="JmMessage" table="jm_message">
+		<id name="id" column="id" type="string">
+			<generator class="uuid" />
+		</id>
+		<property name="adviceType" column="advice_type" type="string" />
+		<property name="name" column="name" type="string" />
+		<property name="phone" column="phone" type="string" />
+		<property name="detail" column="detail" type="string" />
+		<property name="adviceMethod" column="advice_method" type="string" />
+		<property name="appointTime" column="appoint_time" type="timestamp" />
+		<property name="createTime" column="create_time" type="timestamp" />
+		<property name="contactType" column="contact_type" type="string" />
+		<property name="contact" column="contact" type="string" />
+		<property name="deal" column="deal" type="java.lang.Boolean" />
+	</class>
+</hibernate-mapping>

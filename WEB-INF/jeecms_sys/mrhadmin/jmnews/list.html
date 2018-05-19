@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>新闻管理</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Le styles -->
+    <script type="text/javascript" src="${base}/mrhweb/css/assets/js/jquery.min.js"></script>
+    <link rel="stylesheet" href="${base}/mrhweb/css/assets/css/style.css">
+    <link rel="stylesheet" href="${base}/mrhweb/css/assets/css/loader-style.css">
+    <link rel="stylesheet" href="${base}/mrhweb/css/assets/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="${base}/mrhweb/css/assets/js/tag/jquery.tagsinput.css">
+	<link href="${base}/mrhweb/css/formStyle.css" rel='stylesheet' type='text/css' />
+	
+	<link rel='stylesheet' type='text/css' href="${base}/js_lib/jquery_ui/css/humanity.css" />
+	<link rel='stylesheet' type='text/css' href="${base}/js_lib/jquery_ui/css/base.css" />
+	
+	<link href="${base}/mrhweb/css/assets/js/footable/css/footable.core.css?v=2-0-1" rel="stylesheet" type="text/css">
+    <link href="${base}/mrhweb/css/assets/js/footable/css/footable.standalone.css" rel="stylesheet" type="text/css">
+    <link href="${base}/mrhweb/css/assets/js/footable/css/footable-demos.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="${base}/mrhweb/css/assets/js/dataTable/lib/jquery.dataTables/css/DT_bootstrap.css">
+    <link rel="stylesheet" href="${base}/mrhweb/css/assets/js/dataTable/css/datatables.responsive.css">
+	
+    <link rel="shortcut icon" href="${base}/mrhweb/css/assets/ico/minus.png">
+</head>
+
+<body>
+    <!-- Preloader -->
+    <div id="preloader">
+        <div id="status">&nbsp;</div>
+    </div>
+    <!-- TOP NAVBAR -->
+    <nav role="navigation" class="navbar navbar-static-top">
+        <#include "../templateView/navigation.html"/>
+    </nav>
+
+    <!-- /END OF TOP NAVBAR -->
+
+    <!-- SIDE MENU -->
+    <div id="skin-select">
+        <#include "../templateView/skinSelect.html"/>
+    </div>
+    <!-- END OF SIDE MENU -->
+
+
+
+    <!--  PAPER WRAP -->
+    <div class="wrap-fluid">
+        <div class="container-fluid paper-wrap bevel tlbr">
+
+            <!-- CONTENT -->
+            <!--TITLE -->
+            <div class="row">
+                <div id="paper-top">
+                    <div class="col-sm-3">
+                        <h2 class="tittle-content-header">
+                            <i class="icon-map"></i> 
+                            <span>新闻>列表
+                            </span>
+                        </h2>
+                    </div>
+                </div>
+            </div>
+            <!--/ TITLE -->
+
+            <!-- BREADCRUMB -->
+            <!-- <ul id="breadcrumb">
+                <li>
+                    <span class="entypo-home"></span>
+                </li>
+                <li class="pull-right">
+                    <div class="input-group input-widget">
+                        <input style="border-radius:15px" type="text" placeholder="搜索..." class="form-control">
+                    </div>
+                </li>
+            </ul> -->
+
+            <!-- END OF BREADCRUMB -->
+
+		 <div class="content-wrap">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="nest" id="validationClose">
+                            <!-- <div class="title-alt">
+                                <h6>列表</h6>
+                            </div> -->
+                             <div class="body-nest" id="Filtering" style="margin-top:15px">
+                                <div class="row" style="margin-bottom:10px;">
+                                    <div class="col-sm-4">
+                                        <input class="form-control" id="filter" placeholder="搜索新闻标题..." type="text" onkeypress="if(event.keyCode==13||event.which==13)keywordSearch(this);">
+                                    </div>
+                                    <div class="col-sm-6">
+                                   		<span>每页数</span>
+                                        <select class="filter-status form-control" onchange="window._queryOptions.options.page.pageNo=1;window._queryOptions.options.page.length=this.value;window._queryOptions.query();">
+                                            <option value="10">10
+                                            <option value="20">20
+                                            <option value="30">40
+                                        </select>
+                                        <a href="#" onclick="doAdd();" style="margin-left:10px;" class="pull-right btn btn-info clear-filter" >添加一条新闻</a>
+                                       <!--  <a href="#api" class="pull-right btn btn-info filter-api">全部展开</a> -->
+                                    </div>
+                                </div>
+
+                                <table id="footable-res2" class=""  data-page-size="2">
+                                    <thead><tr><th data-toggle="true">新闻标题</th>
+                                     <th >发布时间</th><th>类型</th><th>操作</th></tr>
+                                    </thead><tbody></tbody><tfoot>
+                                        <tr><td colspan="5">
+                                             <div class="pagination pagination-centered">
+                                             </div></td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                            
+                                <!-- </div>
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FOOTER -->
+            <#include "../templateView/footer.html"/>
+            <!-- / END OF FOOTER -->
+
+        </div>
+    </div>
+    <script src="${base}/mrhweb/css/assets/js/footable/js/footable.js?v=2-0-1" type="text/javascript"></script>
+    <script src="${base}/mrhweb/css/assets/js/footable/js/footable.sort.js?v=2-0-1" type="text/javascript"></script>
+	<!-- MAIN EFFECT -->
+    <script type="text/javascript" src="${base}/mrhweb/css/assets/js/preloader.js"></script>
+    <script type="text/javascript" src="${base}/mrhweb/css/assets/js/bootstrap.js"></script>
+  <!--   <script type="text/javascript" src="${base}/mrhweb/css/assets/js/app.js"></script> -->
+    <script type="text/javascript" src="${base}/mrhweb/css/assets/js/load.js"></script>
+    <script type="text/javascript" src="${base}/mrhweb/css/assets/js/main.js"></script>
+    <script type="text/javascript" src="${base}/mrhweb/css/assets/js/tag/jquery.tagsinput.js"></script>
+    <script src="${base}/js_lib/jquery_ui/jquery-ui.js"></script>
+	<script type="text/javascript" src="${base}/mrhweb/js/commonJs/head.js"></script>
+	<script type="text/javascript" src="${base}/mrhweb/js/commonJs/centerLoader/js/center-loader.min.js"></script>
+	<script src="${base}/mrhweb/js/commonJs/mrh.js"></script>
+	<script src="${base}/mrhweb/js/commonJs/imagePreview.js"></script>
+	<script type="text/javascript" src="${base}/mrhweb/js/commonJs/dict.js"></script>
+	<script type="text/javascript" src="${base}/mrhweb/js/commonJs/pageCount.js"></script>
+    <script type="text/javascript" src="${base}/mrhweb/js/commonJs/modalCenter.js" > </script>
+<script>
+
+$(function() {
+		window._initDict(["newsType"]);
+        window._queryOptions = {
+	    		options : { 
+	    			type : null,
+		    		title : null,
+		    		/* delOrNot : "no",
+		    		token : "admin", */
+		    		page : {
+		    			pageNo : 1,
+		    			length : 10
+		    		}
+	    		},
+	    		hash:(function(hash){try{return hash.substring(1)}catch(e){return null}})(location.hash),
+	    		f : $('#footable-res2').clone(true),
+	    		title : null,
+	    		$foottable : $("#Filtering"),
+	    		$oldF : $('#footable-res2'),
+	    		query : function() {
+    				querys();
+    			}
+	    	};
+	    window._queryOptions.query();
+    });
+    
+	keywordSearch = function (obj){
+			var text = $.trim($(obj).val());
+			window._queryOptions.title = null;
+			window._queryOptions.options.page.pageNo = 1;
+			if("" != text){
+				window._queryOptions.options.title = text;
+				window._queryOptions.query();
+			}else{
+				$(obj).val("");
+				window._queryOptions.options.title = null;
+				window._queryOptions.query();
+			}
+	}
+
+	querys = function(){
+			window._postDataJson({
+	    		url : window._BasePath + "/governor/newsAd/list.json",
+	    		data : window._queryOptions.options,
+	    		showMessage : false,
+	    		success : function(data){
+	    			(function(w){w.options.page = data.data.page;
+	    			var purchList = data.data.list;
+	    			tr_tdList(purchList);
+	    			var $pag = $(".pagination");
+	    			$pag.empty().append(createPageCount(w.options.page));
+	    			window._anchor(w.hash);})(window._queryOptions);
+	    		}
+    		});	
+	}    
+	
+	tr_tdList = function(d){
+			if(d != undefined){
+			(function(w){
+				var $oldF = $('#footable-res2');
+				$oldF.remove();
+				var $newF = w.f.clone(true);
+				w.$foottable.append($newF);
+				var $tbody = $newF.find("tbody");
+				for(var i = 0 ,length = d.length; i < length; i ++){
+					var $tr = $("<tr></tr>");
+					var $td0 = $("<td>"+d[i].title+"</td>");
+					var $td1 = $("<td>"+d[i].pubTime+"</a></td>");
+					
+					var $td2 = $("<td>"+window._dictEntitys["newsType"][d[i].type]+"</td>");
+					/* var $td5 = $("<td>true</td>"); */
+					var $td6 = $("<td></td>");
+					var $span1 = $('<span class="status-metro status-active"><a href="#" onclick="doEdit(\''+d[i].id+'\')">编辑</a></span>');
+					var $span2 = $("<span class='status-metro status-suspended'>删除</span>")
+									.attr({"onclick":"doDelete(this,'"+d[i].id+"','"+d[i].name+"')"});
+					$td6.append($span1).append($span2);
+					$tr.append($td0).append($td1).append($td2).append($td6);
+					$tbody.append($tr);
+				}
+				$newF.footable();
+				})(window._queryOptions);
+			}
+	}
+	
+	
+	 function doAdd(){
+	    	url=window._BasePath + "/governor/newsAd/add.do";
+			window._editDialog=showModalCenter(750,500,url);
+	    	event.preventDefault();
+	    }
+	    
+	    function doEdit(id){
+	    	url=window._BasePath + "/governor/newsAd/edit.do?id="+id;
+			window._editDialog=showModalCenter(650,450,url);
+	    	event.preventDefault();
+	    }
+	    
+	    function doDelete(obj,id,username){
+	    	window._postData({
+	    		url : window._BasePath + "/governor/newsAd/delete.json?id="+id,
+	    		type : "post",
+	    		dataType : "json",
+	    		success : function(data){
+	    			if(data.result === true){
+	    				$(obj).parents("tr").remove();
+	    			}
+	    		}
+	    	});
+	    }
+</script>
+</body>
+
+</html>

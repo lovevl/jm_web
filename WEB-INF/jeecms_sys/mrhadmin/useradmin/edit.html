@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <title></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="description" content="">
+    <meta name="author" content="">
+   <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" 
+   integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+   <style>
+   .margin-btm{
+   		margin-bottom:40px;
+   }
+   </style>
+</head>
+
+<body>
+<div class="container">
+	<form id="userForm"  method="post" action="${base}/governor/userAdmin/save.do" onsubmit="return doSave(this);">
+	  <input type="hidden" name="id" value="${useradmin.id!}" />
+	  <div class="form-group">
+	    <label for="usernameId">用户名</label>
+	    <input type="text" class="form-control" id="usernameId" name="username" value="${useradmin.username!}" readonly="readonly">
+	  </div>
+	  <div class="form-group">
+	    <label for="mobileId">手机号码</label>
+	    <input type="text" class="form-control" id="mobileId" name="mobile" value="${(useradmin.userExt.mobile)!""}">
+	  </div>
+	  <div class="form-group">
+	    <label for="realnameId">昵称</label>
+	    <input type="text" class="form-control" id="realnameId" name="realname" value="${useradmin.realname!}">
+	  </div>
+	  <div class="form-group">
+	    <label for="passwordId">密码</label>
+	    <input type="password" class="form-control" id="passwordId" name="password" >
+	  </div>
+	  <div class="form-group">
+	    <label for="surePwdId">确认密码</label>
+	    <input type="password" class="form-control" id="surePwdId"  >
+	  </div>
+	  <button type="submit" class="btn btn-default margin-btm">提交</button>
+	</form>
+	</div>
+<script src="${base}/js_lib/jquery/jquery-2.1.4.min.js"></script>	
+<script src="${base}/r/cms/jquery.js"></script>
+<script src="${base}/mrhweb/js/commonJs/mrh.js"></script>
+<script type="text/javascript">
+$(function(){
+	$form = $("#userForm");
+	$form.find("input[name=realname]").attr("vld", "{required:true,username:true,minlength:[3]}");
+	$form.find("input[name=password]").attr("vld", "{required:true,rangelength:[6,12]}");
+//	$form.find("input[name=username]").attr("vld", "{required:true,remote:'${base}/username_unique.jspx',messages:{remote:'用户名已存在'}}");
+	$form.find("#surePwdId").attr("vld", "{required:true}").attr("equalto", "#passwordId");
+	$form.validate();
+});
+
+var editSuccess = function(data){
+	if(data.result==true){
+		//parent.doSubmit($(parent.$("#tableForm")));
+		parent.window._MRHLoader.slowDestroy(700,"修改成功");
+		parent.$(parent._editDialog).dialog("close");
+	}
+};
+
+function doSave(form){
+	ajaxSubmitForm(form,editSuccess);
+	return false;
+}
+
+
+</script>
+</body>
+</html>

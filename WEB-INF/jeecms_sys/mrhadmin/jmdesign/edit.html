@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="${base}/mrhweb/css/bootstrap/bootstrap.min.css">
+    <title>添加实景设计图片信息</title>
+    <style>
+        textarea{
+            resize: none;
+        }
+        .margin-btm{
+        	margin-bottom:40px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container-fluid paper-wrap bevel tlbr">
+    <h3 class="text-center">编辑实景设计的图片信息</h3>
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1 ">
+            <form id="designEForm" class="form-horizontal" method="post" action="${base}/governor/designAd/save.json" onsubmit="return doSave(this);">
+            	<input type="hidden" name="id" value="${design.id!}"/>
+                <div class="form-group">
+                    <label for="" class="col-sm-2 control-label">编号：</label>
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control" name="num" 
+                        onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')"
+                        placeholder="可选，图片编号" value="${(design.num)!}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="" class=" col-sm-2 control-label">图片路径：</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="imgUrl" placeholder="七牛云的图片路径" value="${design.imgUrl!}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="" class="col-sm-2 control-label">图片大小：</label>
+                    <div class="col-sm-2">
+                        <input type="text" name="size" class="form-control" 
+                        onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')"
+                        placeholder="KB" value="${design.size!}">
+                    </div>
+                    <label for="" class="col-sm-1 control-label">宽：</label>
+                    <div class="col-sm-1">
+                        <input type="text" name="width" class="form-control" 
+                        onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')"
+                        placeholder="像素" value="${design.width!}">
+                    </div>
+                    <label for="" class="col-sm-1 control-label">高：</label>
+                    <div class="col-sm-1">
+                        <input type="text" name="height" class="form-control" 
+                        onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')"
+                        placeholder="像素" value="${design.height!}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="" class="col-sm-2 control-label">标题：</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="title" placeholder="图片标题" value="${design.title!}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="" class=" col-sm-2 control-label">上传时间：</label>
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control" name="updateTime" placeholder="可选，默认表单提交的时间" value="${design.updateTime!}"
+                        onClick="WdatePicker({el:this,dateFmt:'yyyy-MM-dd HH:mm:ss'})">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="" class=" col-sm-2 control-label">图片作者：</label>
+                    <div class=" col-sm-4">
+                        <input type="text"  class="form-control" name="author" value="" placeholder="作者"  value="${design.author!}"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="" class="col-sm-2 control-label">空间：</label>
+                    <div class="col-sm-10" id="room_type_id">
+                        <!-- <input type="checkbox" name="roomType" value="1" id="keting"><label for="keting">客厅</label>
+                        <input type="checkbox" name="roomType" value="2" id="canting"><label for="canting">餐厅</label>
+                        <input type="checkbox" name="roomType" value="3" id="shufang"><label for="shufang">书房</label>
+                        <input type="checkbox" name="roomType" value="4" id="woshi"><label for="woshi">卧室</label>
+                        <input type="checkbox" name="roomType" value="5" id="ertong"><label for="ertong">儿童房</label>
+                        <input type="checkbox" name="roomType" value="6" id="xuanguan"><label for="xuanguan">玄关</label>
+                        <input type="checkbox" name="roomType" value="7" id="diaoding"><label for="diaoding">吊顶</label>
+                        <input type="checkbox" name="roomType" value="8" id="beijing"><label for="beijing">背景墙</label>
+                        <input type="checkbox" name="roomType" value="9" id="dixia"><label for="dixia">地下室</label>
+                        <input type="checkbox" name="roomType" value="10" id="jianshen"><label for="jianshen">健身房</label> -->
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="" class="col-sm-2 control-label">风格：</label>
+                    <div class="col-sm-10" id="style_type_id">
+                        <!-- <input type="checkbox" name="styleType" value="1" id="xiandai"><label for="xiandai">现代简约</label>
+                        <input type="checkbox" name="styleType" value="2" id="zhongshi"><label for="zhongshi">新中式(禅意)</label>
+                        <input type="checkbox" name="styleType" value="3" id="meishi"><label for="meishi">美式</label>
+                        <input type="checkbox" name="styleType" value="4" id="jianou"><label for="jianou">简欧</label>
+                        <input type="checkbox" name="styleType" value="5" id="beiou"><label for="beiou">北欧</label>
+                        <input type="checkbox" name="styleType" value="6" id="tianyuan"><label for="tianyuan">田园</label>
+                        <input type="checkbox" name="styleType" value="7" id="dizhonghai"><label for="dizhonghai">地中海</label>
+                        <input type="checkbox" name="styleType" value="8" id="rishi"><label for="rishi">日式</label>
+                        <input type="checkbox" name="styleType" value="9" id="gongye"><label for="gongye">工业风</label> -->
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="" class="col-sm-2 control-label">工艺：</label>
+                    <div class="col-sm-10" id="method_type_id">
+                        <!-- <input type="checkbox" name="methodType"  value="1" id="tantu"><label for="tantu">弹涂</label>
+                        <input type="checkbox" name="methodType"  value="2" id="jili"><label for="jili">肌理</label>
+                        <input type="checkbox" name="methodType"  value="3" id="kehua"><label for="kehua">刻画</label>
+                        <input type="checkbox" name="methodType"  value="4" id="midong"><label for="midong">米洞石</label>
+                        <input type="checkbox" name="methodType"  value="5" id="shayan"><label for="shayan">砂岩</label>
+                        <input type="checkbox" name="methodType"  value="6" id="guizao"><label for="guizao">硅藻砖</label>
+                        <input type="checkbox" name="methodType"  value="7" id="yishugui"><label for="yishugui">艺术硅</label> -->
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="" class="col-sm-2 control-label">标记：</label>
+                    <div class="col-sm-4">
+                        <input type="text" name="sign" class="form-control" placeholder="可选，备用属性" value="${design.sign!}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="" class="col-sm-2 control-label">图片描述：</label>
+                    <div class="col-sm-10">
+                        <textarea name="detail" class="form-control" id=""  rows="5" value="${design.detail!}"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="" class="col-sm-2 control-label">推荐：</label>
+                    <div class="col-sm-2">
+                        <input type="radio" name="recommend" value="false"  id="recommendFalse" checked><label for="recommendFalse">否</label>
+                        <input type="radio" name="recommend" value="true" id="recommendTrue" <#if design.recommend??&&design.recommend==true>checked=""</#if> > <label for="recommendTrue">是</label>
+                    </div>
+                    <label for="" class="col-sm-2 control-label" >点赞数量：</label>
+                    <div class="col-sm-2">
+                        <input type="text" name="praise" class="form-control" 
+                        onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')"
+                        placeholder="备用属性" value="${design.praise!}">
+                    </div>
+                </div>
+                <div class="text-center sub margin-btm"><button type="submit" class="btn btn-info">提交</button></div>
+            </form>
+        </div>
+    </div>
+</div>
+<script src="${base}/thirdparty/My97DatePicker/WdatePicker.js"></script>
+<script src="${base}/js_lib/jquery/jquery-2.1.4.min.js"></script>	
+<script src="${base}/r/cms/jquery.js"></script>
+<script src="${base}/mrhweb/js/commonJs/dict.js"></script>
+<script src="${base}/mrhweb/js/commonJs/mrh.js"></script>
+<script>
+$(function(){
+	var $form=$("#designEForm");
+	$form.find("input[name=num]").attr("vld", "{required:false,remote:'${base}/unique_num.jspx',messages:{remote:'编号已存在'}}");
+	$form.validate();
+	window._initDict(["roomType","styleType","methodType"]);
+	init = {
+		$room : $('#room_type_id'),
+		$style : $('#style_type_id'),
+		$method : $('#method_type_id')
+	}
+	initTypes();
+});
+
+initTypes = function(){
+	var rArr = "${(design.roomType)!}".split(',');
+	for(var val in window._dictEntitys["roomType"]){
+		if(getKey(val,rArr)){
+			init.$room.append('<input type="checkbox" checked name="roomType" value="'+val+'" id="room'+val+'"><label for="room'+val+'">'+window._dictEntitys["roomType"][val]+'</label>');
+		}else{
+			init.$room.append('<input type="checkbox" name="roomType" value="'+val+'" id="room'+val+'"><label for="room'+val+'">'+window._dictEntitys["roomType"][val]+'</label>');
+		}
+	}
+	var sArr = "${(design.styleType)!}".split(',');
+	for(var val in window._dictEntitys["styleType"]){
+		if(getKey(val,sArr)){
+			init.$style.append('<input type="checkbox" checked name="styleType" value="'+val+'" id="style'+val+'"><label for="style'+val+'">'+window._dictEntitys["styleType"][val]+'</label>');
+		}else{
+			init.$style.append('<input type="checkbox" name="styleType" value="'+val+'" id="style'+val+'"><label for="style'+val+'">'+window._dictEntitys["styleType"][val]+'</label>');
+		}
+	}
+	var mArr = "${(design.methodType)!}".split(',');
+	for(var val in window._dictEntitys["methodType"]){
+		if(getKey(val,mArr)){
+			init.$method.append('<input type="checkbox" checked name="methodType" value="'+val+'" id="method'+val+'"><label for="method'+val+'">'+window._dictEntitys["methodType"][val]+'</label>');
+		}else{
+			init.$method.append('<input type="checkbox" name="methodType" value="'+val+'" id="method'+val+'"><label for="method'+val+'">'+window._dictEntitys["methodType"][val]+'</label>');
+		}
+		
+	}
+}
+
+function getKey(val,arr){
+	if(arr != ""){
+		for(var key in arr){
+			if(arr[key] ==val){
+				return val;
+			}
+		}
+	}
+	return null;
+}
+
+var addSuccess = function(data){
+	if(data.result==true){
+		parent.window._MRHLoader.slowDestroy(700,"修改成功");
+		parent.window._queryOptions.options.page.pageNo = 1;
+		parent.window._queryOptions.query();
+		parent.$(parent._editDialog).dialog("close");
+	}
+};
+
+
+function doSave(form){
+	ajaxSubmitForm(form,addSuccess);
+	event.preventDefault();
+	return false;
+}
+</script>
+</body>
+</html>

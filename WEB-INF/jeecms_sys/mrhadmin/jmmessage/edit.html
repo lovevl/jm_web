@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="${base}/mrhweb/css/bootstrap/bootstrap.min.css">
+    <title>消息详细</title>
+    <style>
+        textarea{
+            resize: none;
+        }
+        .margin-btm{
+            margin-bottom: 40px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container-fluid paper-wrap bevel tlbr">
+    <h3 class="text-center">查看消息详细内容</h3>
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1 ">
+            <form id="schlForm" class="form-horizontal" method="post" action="${base}/governor/messageAd/save.json" onsubmit="return doSave(this);">
+                <input type="hidden" name="id" value="${message.id!}">
+                <div class="form-group">
+                    <label for="" class="col-sm-2 control-label">称呼：</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="name" value="${message.name!}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="" class=" col-sm-2 control-label">预约时间：</label>
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control" name="appointTime" value="${message.appointTime!}" onClick="WdatePicker({el:this,dateFmt:'yyyy-MM-dd HH:mm:ss'})">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="" class="col-sm-2 control-label">咨询问题：</label>
+                    <div class="col-sm-4">
+                        <select name="adviceType"  class="form-control"  id="advice_type_id">
+
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="" class="col-sm-2 control-label">电话：</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="phone" value="${message.phone!}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="" class="col-sm-2 control-label">详细：</label>
+                    <div class="col-sm-10">
+                        <textarea name="detail" class="form-control" id=""  rows="5" value="${message.detail!}"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="" class="col-sm-2 control-label">解决否：</label>
+                    <div class="col-sm-8">
+                        <input type="radio" name="deal" value="false" checked>否
+                        <input type="radio" name="deal" value="true" <#if message.deal??&&message.deal==true>checked=""</#if>>是
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="" class=" col-sm-2 control-label">创建时间：</label>
+                    <div class=" col-sm-4">
+                        <input type="text"  class="form-control" name="createTime" value="${message.createTime!}"  />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="" class="col-sm-2 control-label">回访方式：</label>
+                    <div class="col-sm-10">
+                        <select name="adviceMethod"  class="form-control"  id="advice_method_id">
+
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="" class="col-sm-2 control-label">渠道：</label>
+                    <div class="col-sm-10">
+                        <select name="contactType"  class="form-control"  id="contact_type_id">
+
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="" class="col-sm-2 control-label">联系方式：</label>
+                    <div class="col-sm-4">
+                        <input type="text" name="contact" class="form-control" value="${message.contact!}">
+                    </div>
+                </div>
+                <div class="text-center sub margin-btm"><button type="submit" class="btn btn-info">提交</button></div>
+            </form>
+        </div>
+    </div>
+</div>
+<script src="${base}/thirdparty/My97DatePicker/WdatePicker.js"></script>
+<script src="${base}/js_lib/jquery/jquery-2.1.4.min.js"></script>	
+<script src="${base}/r/cms/jquery.js"></script>
+<script src="${base}/mrhweb/js/commonJs/dict.js"></script>
+<script src="${base}/mrhweb/js/commonJs/mrh.js"></script>
+<script>
+$(function(){
+	window._initDict(["appointType"]);
+	initTypes();
+});
+
+
+initTypes = function(){
+		var type = "${message.adviceType}";
+  		var $st = $("#advice_type_id");
+  		for(var key in window._dictEntitys["appointType"]){
+  			 if(type == key){
+  			 	$st.append("<option value="+key+" selected>"+window._dictEntitys["appointType"][key]+"</option>");
+  			 }else{
+	  			$st.append("<option value="+key+">"+window._dictEntitys["appointType"][key]+"</option>");
+  			 }
+  		}
+    }
+
+
+var addSuccess = function(data){
+	if(data.result==true){
+		parent.window._MRHLoader.slowDestroy(700,"修改成功");
+		parent.window._queryOptions.options.page.pageNo = 1;
+		parent.window._queryOptions.query();
+		parent.$(parent._editDialog).dialog("close");
+	}
+};
+
+function doSave(form){
+	ajaxSubmitForm(form,addSuccess);
+	event.preventDefault();
+	return false;
+}
+
+</script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.jeecms.jmhome.common.entity">
+	<class name="HomeServiceRecord" table="home_service_record">
+		<id name="id" column="id" type="string">
+			<generator class="uuid" />
+		</id>
+		<property name="record" column="record" type="string" />
+		<property name="type" column="type" type="integer" />
+		<property name="recordTime" column="record_time" type="timestamp" />
+		<property name="completeTime" column="complete_time" type="timestamp" />
+		
+		<many-to-one name="customer" column="customer_id" class="Customer" lazy="false"  />
+		<many-to-one name="homeService" column="home_service_id" class="HomeService" lazy="false"  />
+	</class>
+</hibernate-mapping>

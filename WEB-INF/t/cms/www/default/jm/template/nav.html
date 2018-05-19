@@ -1,0 +1,56 @@
+<!--<div class="container-fluid">-->
+    <div class="nav-bar backColor" id="nav_bar_id">
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">logo</a>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse pull-right" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li ><a href="${base}/index.jhtml">首页 </a></li>
+                        <li><a href="${base}/about/aboutwe.jhtml">关于境美</a></li>
+                        <li><a href="${base}/tech/tantu.jhtml">产品工艺</a></li>
+                        <li><a href="${base}/design/design.jhtml">实景设计</a></li>
+                        <li><a href="${base}/news/jmn.jhtml">新鲜事<span class="sr-only">(current)</span></a></li>
+                        <li><a href="${base}/active/promotion.jhtml">优惠活动</a></li>
+                        <li><a href="${base}/appoint/now.jhtml">预约我们</a></li>
+                    </ul>
+					<script  type="text/javascript">
+					$(window).load(function() {
+						var $li = $('#bs-example-navbar-collapse-1').find('.navbar-nav>li');
+						var url = window.location.pathname;
+						if(url.search(/index/) >= 0){
+							$li.removeClass('active').eq(0).addClass('active');
+						}else if(url.search(/about/) >= 0){
+							$li.removeClass('active').eq(1).addClass('active');
+						}else if(url.search(/tech/) >= 0){
+							$li.removeClass('active').eq(2).addClass('active');
+						}else if(url.search(/design/) >= 0){
+							$li.removeClass('active').eq(3).addClass('active');
+						}else if(url.search(/news/) >= 0){
+							$li.removeClass('active').eq(4).addClass('active');
+						}else if(url.search(/active/) >= 0){
+							$li.removeClass('active').eq(5).addClass('active');
+						}else if(url.search(/appoint/) >= 0){
+							$li.removeClass('active').eq(6).addClass('active');
+						}
+					});
+					
+					</script>
+                </div><!-- /.navbar-collapse -->
+            </div><!-- /.container-fluid -->
+        </nav>
+    </div>
+<!--紧跟nav—bar下方，当navbar获得fixed的时候，margin-top一个高度-->
+<div class="ad_bar" id="ad_bar_id" >
+    <!-- <div style="height: 80px"></div> -->
+</div>

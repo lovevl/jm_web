@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.jeecms.sch.common.entity">
+	<class name="SchStudents" table="sch_students">
+		<id name="id" column="id" type="string">
+			<generator class="uuid" />
+		</id>
+		<property name="wechatId" column="wechat_id" type="string" />
+		<property name="studyNum" column="study_num" type="integer" />
+		<property name="name" column="name" type="string" />
+		<property name="pwd" column="pwd" type="string" />
+		<property name="phone" column="phone" type="string" />
+		<property name="period" column="period" type="string" />
+		<property name="gender" column="gender" type="java.lang.Boolean" />
+		<property name="grade" column="grade" type="string" />
+		<property name="classs" column="classs" type="string" />
+		<many-to-one name="schl" column="school_id" class="Schools" lazy="false"/>
+		<many-to-one name="schClass" column="classs_id" class="SchClasses" lazy="false"/>
+		<!-- <property name="path" column="path" type="integer" /> -->
+	</class>
+</hibernate-mapping>

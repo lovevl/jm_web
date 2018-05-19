@@ -1,0 +1,100 @@
+/*图片的backgroundurl*/
+
+/*tantu的backgroundurl*/
+
+.tantu .item-pic:nth-child(1) .pic-h{
+    background-image: url(../img/tech/taose-1.jpg);
+}
+.tantu .item-pic:nth-child(2) .pic-h{
+    background-image: url(../img/tech/danse-1.jpg);
+}
+.tantu .item-pic:nth-child(3) .pic-h{
+    background-image: url(../img/tech/zhuanyi-1.jpg);
+}
+.tantu .item-pic:nth-child(4) .pic-h{
+    background-image: url(../img/tech/lifang-1.jpg);
+}
+.tantu .item-pic:nth-child(5) .pic-h{
+    background-image: url(../img/tech/pingtu-1.jpg);
+}
+
+/*jili的backgroundurl*/
+.jili .item-pic:nth-child(1) .pic-h{
+    background-image: url(http://www.jingmeigzn.com/UploadFiles/Product/20171124110300732.jpg);
+}
+.jili .item-pic:nth-child(2) .pic-h{
+    background-image: url(http://www.jingmeigzn.com/UploadFiles/Product/20180123051737436.jpg);
+}
+.jili .item-pic:nth-child(3) .pic-h{
+    background-image: url(http://www.jingmeigzn.com/UploadFiles/Product/20171123042044537.jpg);
+}
+.jili .item-pic:nth-child(4) .pic-h{
+    background-image: url(http://www.jingmeigzn.com/UploadFiles/Product/20180123051825886.jpg);
+}
+.jili .item-pic:nth-child(5) .pic-h{
+    background-image: url(http://www.jingmeigzn.com/UploadFiles/Product/20180123051855649.jpg);
+}
+.jili .item-pic:nth-child(6) .pic-h{
+    background-image: url(http://www.jingmeigzn.com/UploadFiles/Product/20171123034921471.jpg);
+}
+.jili .item-pic:nth-child(7) .pic-h{
+    background-image: url(http://www.jingmeigzn.com/UploadFiles/Product/20171123032833718.gif);
+}
+.jili .item-pic:nth-child(8) .pic-h{
+    background-image: url(http://www.jingmeigzn.com/UploadFiles/Product/20171123031754175.jpg);
+}
+.jili .item-pic:nth-child(9) .pic-h{
+    background-image: url(http://www.jingmeigzn.com/UploadFiles/Product/20171123030756879.jpg);
+}
+.jili .item-pic:nth-child(10) .pic-h{
+    background-image: url(http://www.jingmeigzn.com/UploadFiles/Product/20171123030102944.jpg);
+}
+.jili .item-pic:nth-child(11) .pic-h{
+    background-image: url(http://www.jingmeigzn.com/UploadFiles/Product/20171123025008364.jpg);
+}
+.jili .item-pic:nth-child(12) .pic-h{
+    background-image: url(http://www.jingmeigzn.com/UploadFiles/Product/20171123024323253.jpg);
+}
+.jili .item-pic:nth-child(13) .pic-h{
+    background-image: url(http://www.jingmeigzn.com/UploadFiles/Product/20171123023519198.jpg);
+}
+.jili .item-pic:nth-child(14) .pic-h{
+    background-image: url(http://www.jingmeigzn.com/UploadFiles/Product/20171123021725955.jpg);
+}
+
+
+/*shayan的backgroundurl*/
+.shayan .item-pic:nth-child(1) .pic-h{
+    background-image: url(http://www.jingmeigzn.com/UploadFiles/Product/20171123072130791.jpg);
+}
+.shayan .item-pic:nth-child(2) .pic-h{
+    background-image: url(http://www.jingmeigzn.com/UploadFiles/Product/20171123071206594.jpg);
+}
+
+/*kehua的backgroundurl*/
+.kehua .item-pic:nth-child(1) .pic-h{
+    background-image: url(http://www.jingmeigzn.com/UploadFiles/Product/20171123070411993.jpg);
+}
+.kehua .item-pic:nth-child(2) .pic-h{
+    background-image: url(http://www.jingmeigzn.com/UploadFiles/Product/20171123065147618.jpg);
+}
+.kehua .item-pic:nth-child(3) .pic-h{
+    background-image: url(http://www.jingmeigzn.com/UploadFiles/Product/20171123064352875.jpg);
+}
+.kehua .item-pic:nth-child(4) .pic-h{
+    background-image: url(http://www.jingmeigzn.com/UploadFiles/Product/20171123063640132.jpg);
+}
+
+/*midongshi的backgroundurl*/
+.midongshi .item-pic:nth-child(1) .pic-h{
+    background-image: url(http://www.jingmeigzn.com/UploadFiles/Product/20171123050947796.jpg);
+}
+.midongshi .item-pic:nth-child(2) .pic-h{
+    background-image: url(http://www.jingmeigzn.com/UploadFiles/Product/20171123050617900.jpg);
+}
+/*guizaozhuan的backgroundurl*/
+.guizaozhuan .item-pic:nth-child(1) .pic-h{
+    background-image: url(http://www.jingmeigzn.com/UploadFiles/Product/20180312100516367.jpg);
+}
+
+/*套色图片轮播*/

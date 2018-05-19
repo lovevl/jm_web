@@ -1,0 +1,93 @@
+ <div id="logo">
+            <h1>后台管理
+                <span>v1.3</span>
+            </h1>
+        </div>
+
+        <a id="toggle">
+            <span class="icon-view-list"></span>
+        </a>
+        <div class="skin-part">
+            <div id="tree-wrap">
+                <div class="side-bar">
+                    <ul id="menu-showhide" class="topnav menu-left-nest">
+                        <!-- <li>
+                            <a class="tooltip-tip" href="#" title="Form">
+                                <i class="icon-document"></i>
+                                <span>表单框</span>
+                            </a>
+                            <ul>
+                                <li>
+                                    <a class="tooltip-tip2 ajax-load" href="../forms/formElement.do" ><i class="icon-document-edit"></i><span>表单元素</span></a>
+                                </li>
+                            </ul>
+                        </li> -->
+                        <li>
+                            <a class="tooltip-tip" href="../designAd/list.do" title="Tables">
+                                <i class="icon-view-list"></i>
+                                <span>实景图片管理</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="tooltip-tip" href="../newsAd/list.do" title="Tables">
+                                <i class="icon-view-list"></i>
+                                <span>新闻管理</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="tooltip-tip" href="../picturesAd/list.do" title="Tables">
+                                <i class="icon-view-list"></i>
+                                <span>在线选图管理</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="tooltip-tip" href="../messageAd/list.do" title="Tables">
+                                <i class="icon-view-list"></i>
+                                <span>消息管理</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="tooltip-tip" href="../cmsDict/list.do" title="Tables">
+                                <i class="icon-view-list"></i>
+                                <span>数字字典</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="tooltip-tip" href="../userAdmin/list.do" title="Tables">
+                                <i class="icon-view-list"></i>
+                                <span>用户管理</span>
+                            </a>
+                        </li>
+						<li>
+                            <a class="tooltip-tip" href="../schlAdmin/list.do" title="Tables">
+                                <i class="icon-view-list"></i>
+                                <span>学校管理</span>
+                            </a>
+                        </li>
+                       
+                    </ul>
+<script type="text/javascript">
+    $(window).load(function() {
+    	var $ulChilds = $("#menu-showhide").children("li");
+    	var url = window.location.pathname;
+    	if(url.search(/designAd/) >= 0){
+    		$ulChilds.eq(0).children("a").first().addClass("active").parent().siblings().children("a").first().removeClass("active");
+    	}else if(url.search(/newsAd/) >= 0){
+    		$ulChilds.eq(1).children("a").first().addClass("active").parent().siblings().children("a").first().removeClass("active");
+    	}else if(url.search(/picturesAd/) >= 0){
+    		$ulChilds.eq(2).children("a").first().addClass("active").parent().siblings().children("a").first().removeClass("active");
+    	}else if(url.search(/messageAd/) >= 0){
+    		$ulChilds.eq(3).children("a").first().addClass("active").parent().siblings().children("a").first().removeClass("active");
+    	}else if(url.search(/cmsDict/) >= 0){
+    		$ulChilds.eq(4).children("a").first().addClass("active").parent().siblings().children("a").first().removeClass("active");
+    	}else if(url.search(/userAdmin/) >= 0){
+    		$ulChilds.eq(5).children("a").first().addClass("active").parent().siblings().children("a").first().removeClass("active");
+    	}else if(url.search(/schlAdmin/) >= 0){
+    		$ulChilds.eq(6).children("a").first().addClass("active").parent().siblings().children("a").first().removeClass("active");
+    	}
+    	
+    });
+</script>
+                </div>
+            </div>
+        </div>

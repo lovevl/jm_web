@@ -1,0 +1,33 @@
+@font-face {
+    font-family: "Vipp Neue";
+
+    src:  url(font/VippNeue-Regular.woff2) format("woff2") ;
+    font-weight: 300;
+    font-style: normal
+}
+
+@font-face {
+    font-family: "Vipp Neue";
+    src: url(font/VippNeue-DemiBold.woff2) format("woff2") ;
+    font-weight: 600;
+    font-style: normal
+}
+
+@font-face {
+    font-family: "Vipp Neue";
+    src: url(font/VippNeue-Bold.woff2) format("woff2") ;
+    font-weight: 700;
+    font-style: normal
+}
+
+nav{
+    font-family: "Vipp Neue", Arial, Helvetica, sans-serif;
+    color: #282828 !important;
+    font-size: 14px;
+    line-height: 30px;
+    /*text-transform: uppercase;*/
+    font-weight: 600;
+}
+nav ul.nav a{
+    color: #282828 !important;
+}

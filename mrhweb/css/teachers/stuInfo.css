@@ -1,0 +1,60 @@
+.student-msg p{
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            color: #34495e;
+            font-weight: 300;
+            /*text-indent: 1em;*/
+        }
+        .login-form{
+            /*position: relative;*/
+        }
+        label.pwd-msg{
+            font-weight: normal;
+            font-size: 12px;
+            color: #a94442;
+        }
+        table.table{
+            width: 65%;
+            counter-reset: figures;
+        }
+        .table tbody{
+
+        }
+        .table tbody tr td:last-child{
+
+            border: 1px solid #fff;
+        }
+        .table tbody tr td:last-child button{
+            margin-right: 7px;
+        }
+        .table tbody tr td.disabled{
+            background-color: #f7f7f7;
+        }
+        .table tbody tr td.disabled input{
+            color: #787878;
+            background-color: #f7f7f7;
+        }
+        tr input{
+            border: 0;
+            outline: none;
+            width: 100%;
+        }
+        #addNewStu{
+            position: absolute;
+        }
+        figure figcaption{
+            counter-increment: figures;
+        }
+        figure figcaption:before {
+            content: counter(figures);
+        }
+        @media (max-width: 992px) {
+            table.table{
+                width: 70%;
+            }
+        }
+        @media (max-width: 768px) {
+            table.table{
+                width: 80%;
+            }
+        }

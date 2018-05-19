@@ -1,0 +1,32 @@
+<li>
+    <a href="${base}/about/aboutwe.jhtml">
+    <span class="color-block"><i class="iconfont icon-menu icon-jieshao"></i></span>
+    <span class="link">境美介绍</span>
+</a></li>
+<li><a href="${base}/about/culture.jhtml">
+    <span class="color-block"><i class="iconfont icon-menu icon-qiyewenhua"></i></span>
+    <span class="link">境美文化</span>
+</a></li>
+<li><a href="${base}/about/honor.jhtml">
+    <span class="color-block"><i class="iconfont icon-menu icon-rongyu"></i></span>
+    <span class="link">境美荣誉</span>
+</a></li>
+<li><a href="${base}/about/zz.jhtml">
+    <span class="color-block"><i class="iconfont icon-menu icon-dianpu"></i></span>
+    <span class="link">漳州境美旗舰店</span>
+</a></li>
+<script type="text/javascript">
+$(window).load(function() {
+	var $li = $('#menu_bar_id').find('ul>li');
+	var url = window.location.pathname;
+	if(url.search(/aboutwe/) >= 0){
+		$li.removeClass('active').eq(0).addClass('active');
+	}else if(url.search(/culture/) >= 0){
+		$li.removeClass('active').eq(1).addClass('active');
+	}else if(url.search(/honor/) >= 0){
+		$li.removeClass('active').eq(2).addClass('active');
+	}else if(url.search(/zz.jhtml/) >= 0){
+		$li.removeClass('active').eq(3).addClass('active');
+	}
+});
+</script>

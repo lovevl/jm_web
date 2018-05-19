@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="${base}/mrhweb/css/bootstrap/bootstrap.min.css">
+    <title>添加新闻</title>
+    <style>
+        textarea{
+            resize: none;
+        }
+        .margin-btm{
+        margin-bottom:40px;}
+    </style>
+</head>
+<body>
+
+<div class="container-fluid paper-wrap bevel tlbr">
+    <h3 class="text-center">编辑新闻</h3>
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1 ">
+            <form id="newsEForm" class="form-horizontal" method="post" action="${base}/governor/newsAd/save.json" onsubmit="return doSave(this);">
+            	<input type="hidden" name="id" value="${news.id!}" />
+            	<div class="form-group">
+                    <label for="" class="col-sm-2 control-label">新闻编号：</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="num" readonly="readonly" 
+                        value="${news.num!}" >
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="" class="col-sm-2 control-label">新闻标题：</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="title" placeholder="新闻标题"  value="${news.title!}" >
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="" class=" col-sm-2 control-label">发布时间：</label>
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control" name="pubTime" placeholder=""  value="${news.pubTime!}"
+                         onClick="WdatePicker({el:this,dateFmt:'yyyy-MM-dd HH:mm:ss'})">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="" class="col-sm-2 control-label">类型：</label>
+                    <div class="col-sm-4">
+                        <select name="type" id="news_type_id" class="form-control"  id="">
+                            <!-- <option value="1">境美新闻</option>
+                            <option value="2">行业新闻</option>
+                            <option value="3">硅藻泥小知识</option>
+                            <option value="4">装修知识</option> -->
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="" class="col-sm-2 control-label">新闻图片路径：</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="imgUrl"  value="${news.imgUrl!}" placeholder="用于列表展示">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="" class=" col-sm-2 control-label">新闻作者：</label>
+                    <div class=" col-sm-4">
+                        <input type="text"  class="form-control" name="author"  value="${news.author!}" value=""  />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="" class="col-sm-2 control-label">新闻url：</label>
+                    <div class="col-sm-10">
+                        <input type="text" name="url" class="form-control"  value="${news.url!}" placeholder="静态网页的路径">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="" class="col-sm-2 control-label">来源网站：</label>
+                    <div class="col-sm-10">
+                        <input type="text" name="publish" class="form-control"  value="${news.publish!}" placeholder="可以使用html语言">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="" class="col-sm-2 control-label">标记：</label>
+                    <div class="col-sm-4">
+                        <input type="text" name="sign" class="form-control"  value="${news.sign!}" placeholder="可选，备用属性">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="" class="col-sm-2 control-label">片段：</label>
+                    <div class="col-sm-10">
+                        <textarea name="segment" class="form-control" id="" rows="5">${news.segment!}</textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="" class="col-sm-2 control-label">详细：</label>
+                    <div class="col-sm-10">
+                        <textarea name="detail" class="form-control" id=""  rows="5"  >${news.detail!}</textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                	<label for="" class="col-sm-2 control-label">推荐：</label>
+                    <div class="col-sm-2">
+                        <input type="radio" name="recommend" value="false"  id="recommendFalse" checked><label for="recommendFalse">否</label>
+                        <input type="radio" name="recommend" value="true" id="recommendTrue" <#if news.recommend??&&news.recommend==true>checked=""</#if> > <label for="recommendTrue">是</label>
+                    </div>
+                </div>
+                 <div class="form-group">
+                    <label for="" class="col-sm-2 control-label">标签：</label>
+                    <div class="col-sm-4">
+                        <input type="text" name="tags" class="form-control" placeholder="一个空格分隔" value="${news.tags!}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="" class="col-sm-2 control-label">相关链接：</label>
+                    <div class="col-sm-8">
+                    <#if news.relateUrls??><#list news.relateUrls as n>
+                        <input type="text"  class="form-control" name="relateUrls" value="${n}">
+                    </#list><#else>
+                        <input type="text"  class="form-control" name="relateUrls" placeholder="链接2，可选">
+                        <input type="text"  class="form-control" name="relateUrls" placeholder="链接3，可选">
+                        <input type="text"  class="form-control" name="relateUrls" placeholder="链接1，可选">
+                    </#if>
+                    </div>
+                </div>
+                <div class="text-center sub margin-btm"><button type="submit" class="btn btn-info">提交</button></div>
+            </form>
+        </div>
+    </div>
+</div>
+<script src="${base}/thirdparty/My97DatePicker/WdatePicker.js"></script>
+<script src="${base}/js_lib/jquery/jquery-2.1.4.min.js"></script>	
+<script src="${base}/r/cms/jquery.js"></script>
+<script src="${base}/mrhweb/js/commonJs/dict.js"></script>
+<script src="${base}/mrhweb/js/commonJs/mrh.js"></script>
+<script>
+$(function(){
+	window._initDict(["newsType"]);
+	initTypes();
+});
+
+
+initTypes = function(){
+		var type = "${news.type}";
+  		var $st = $("#news_type_id");
+  		for(var key in window._dictEntitys["newsType"]){
+  			 if(type == key){
+  			 	$st.append("<option value="+key+" selected>"+window._dictEntitys["newsType"][key]+"</option>");
+  			 }else{
+	  			$st.append("<option value="+key+">"+window._dictEntitys["newsType"][key]+"</option>");
+  			 }
+  		}
+    }
+
+var addSuccess = function(data){
+	if(data.result==true){
+		parent.window._MRHLoader.slowDestroy(700,"修改成功");
+		parent.window._queryOptions.options.page.pageNo = 1;
+		parent.window._queryOptions.query();
+		parent.$(parent._editDialog).dialog("close");
+	}
+};
+
+function doSave(form){
+	ajaxSubmitForm(form,addSuccess);
+	event.preventDefault();
+	return false;
+}
+</script>
+</body>
+</html>

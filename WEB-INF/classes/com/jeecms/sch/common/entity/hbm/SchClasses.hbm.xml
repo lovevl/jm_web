@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.jeecms.sch.common.entity">
+	<class name="SchClasses" table="sch_classes">
+		<id name="id" column="id" type="string">
+			<generator class="uuid" />
+		</id>
+		<property name="grade" column="grade" type="string" />
+		<property name="classs" column="classs" type="string" />
+		<property name="english"  column="english" type="string" />    
+		<property name="chinese"  column="chinese" type="string" />   
+		<property name="math"  column="math" type="string" /> 
+		<property name="biology"  column="biology" type="string" /> 
+		<property name="physics"  column="physics" type="string" />  
+		<property name="chemistry"  column="chemistry" type="string" />  
+		<property name="history"  column="history" type="string" />   
+		<property name="politics"  column="politics" type="string" />    
+		<property name="geography"  column="geography" type="string" />    
+		<property name="music"  column="music" type="string" /> 
+		<property name="sports"  column="sports" type="string" />  
+		<property name="moral"  column="moral" type="string" />  
+		<property name="art"  column="art" type="string" />
+		<property name="term"  column="term" type="string" />
+		<property name="headTeacher"  column="head_teacher" type="string" />
+		<many-to-one name="schl" column="school_id" class="Schools" lazy="false"/>
+		
+	</class>
+</hibernate-mapping>

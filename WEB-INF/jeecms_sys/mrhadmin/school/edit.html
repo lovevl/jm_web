@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>school添加</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Le styles -->
+    
+     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" 
+   integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="shortcut icon" href="${base}/mrhweb/css/assets/ico/minus.png">
+     <style>
+        .area-select{
+            border: 1px solid #46b8da;
+            width: 80px;
+        }
+        .area-box>div{
+            margin: 8px 0;
+        }
+        .school{
+            padding: 0 15px;
+        }
+        .msg{
+            line-height: 1.428571;
+            color: #666;
+            font-size: 12px;
+        }
+        .sub{
+            margin-top: 8px;
+        }
+        input.nooutline{
+            border: 1px solid #e0e0e0;
+            font-size: 14px;
+            line-height: 18px;
+            outline: 0;
+        }
+        .keyword-box{
+            position: relative;
+        }
+        .keywords{
+            position: absolute;
+            top:34px;
+            width: 100%;
+            padding: 0 15px;
+        }
+        .keywords>ul{
+            transform: translateX(-15px);
+            background-color: #fff;
+            border: 1px solid #0dc3ce;
+            padding: 0;
+            margin: 0;
+        }
+        .keywords>ul>li{
+            list-style: none;
+            margin: 0;
+
+        }
+        .keywords>ul>li a{
+            display: block;
+            width: 100%;
+            height: 100%;
+            padding: 2px 12px;
+            color: #424242;
+            text-decoration: none;
+        }
+        .keywords>ul>li:hover{
+            background-color: #f7f7f7;
+        }
+        .keywords.hide{
+            display: none;
+        }
+        .area-box select.form-control{
+        	width:50%;
+        }
+      /*   .form-group label{
+        	line-height:22px;
+        	font-size :14px;
+        	/* margin-right : 10px; 
+        } */
+        div.margin-btm{
+        	margin-bottom:40px;
+        }
+        .form-group>.keyword-box label{
+        	color:red;
+        	font-size:14px;
+        	font-weight:normal;
+        }
+    </style>
+</head>
+
+<body>
+  
+
+
+    <!--  PAPER WRAP -->
+  <!--   <div class="wrap-fluid"> -->
+        <div class="container-fluid paper-wrap bevel tlbr">
+
+           
+				<h3 class="text-center">添加一所新学校</h3>
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1 ">
+            <form id="schlForm" class="form-horizontal" method="post" action="${base}/governor/schlAdmin/save.do" onsubmit="return doSave(this);">
+            <div class="form-group">
+                <div class="col-md-4 col-sm-4 col-xs-4">
+                    <label  class="control-label" >省份：</label>
+                    <select class="form-control" name="province" id="province_id">
+                    </select>
+                </div>
+                <div class="col-md-4 col-sm-4 col-xs-4">
+                    <label  class="control-label"> 城市：</label>
+                    <select class="form-control" name="city" id="city_id">
+                    </select>
+                </div>
+                <div class="col-md-4 col-sm-4 col-xs-4">
+                    <label  class="control-label">县／区：</label>
+                    <select class="form-control" name="area" id="area_id">
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+            	<label for="" class="col-md-2 col-sm-2 control-label">学校编号：</label>
+			    <div class="col-md-10 col-sm-10">
+			      <input type="text" class="form-control" id="school_num" name="schoolNum" value="${schl.schoolNum!}">
+			    </div>
+            </div>
+            <div class="form-group">
+            	<label for="" class="col-md-2 col-sm-2 control-label">城镇：</label>
+			    <div class="col-md-10  col-sm-10">
+			      <input type="text" class="form-control" id="region" name="region"  value="${schl.region!}">
+			    </div>
+            </div>
+            <div class="form-group">
+            	<label for="" class="col-md-2  col-sm-2 control-label">学校分布：</label>
+			    <div class="col-md-10  col-sm-10">
+			      <input type="checkbox" name="type" value="xx" id="xiaoxue" /><label for="xiaoxue">小学</label>
+			      <input type="checkbox" name="type" value="cz" id="chuzh" /><label for="chuzh">初中</label>
+			      <input type="checkbox" name="type" value="gz" id="gaozh" /><label for="gaozh">高中</label>
+			    </div>
+            </div>
+            <div class="form-group">
+                    <label for="schoolInput" class="col-md-2  col-sm-2 control-label">学校：</label>
+                    <div class="col-md-10 col-sm-10 keyword-box">
+                        <input type="text" name="name" class="form-control nooutline" id="schoolInput" value="${schl.name!}">
+                        <div class="keywords hide">
+                            <ul>
+                                <li><a href="#">hhhhh</a></li>
+                                <li><a href="#">好的好的</a></li>
+                            </ul>
+                        </div>
+                    </div>
+            </div>
+                <div class="text-center sub margin-btm"><button type="submit" class="btn btn-info">提交</button></div>
+            </form>
+        </div>
+    </div>
+			
+          
+
+        </div>
+        <script type="text/javascript" src="${base}/mrhweb/css/assets/js/jquery.min.js"></script>
+        <script src="${base}/r/cms/jquery.js"></script>
+	<script src="${base}/mrhweb/js/commonJs/mrh.js"></script>
+	<script type="text/javascript" src="${base}/mrhweb/js/commonJs/dict.js"></script>
+<script type="text/javascript">
+$(function(){
+	var $form = $("#schlForm");
+	/* $form.find("input[name=realname]").attr("vld", "{required:true,username:true,minlength:[3]}");
+	$form.find("input[name=password]").attr("vld", "{required:true,rangelength:[6,12]}");
+	$form.find("input[name=mobile]").attr("vld", "{required:false,phone:true}"); */
+	$form.find("input[name=name]").attr("vld", "{required:true,remote:'${base}/schlname_unique.jspx',messages:{remote:'学校已存在'}}");
+	$form.validate();
+	
+	
+	schl ={
+		$provinceId : $("#province_id"),
+		$cityId : $("#city_id"),
+		$areaId : $("#area_id")
+	};
+	
+	inites();
+	
+	schl.$provinceId.on("change",function(){
+		inites(this.value,schl.$cityId);
+	});
+	schl.$cityId.on("change",function(){
+		inites(this.value,schl.$areaId);
+	});
+	
+});
+
+function inites(parentId,$id){
+	if(parentId==undefined){
+		parentId = 1;
+		$id = schl.$provinceId;
+	}
+	window._postDataJson({
+		url : window._BasePath + "/area/getByParentId.json",
+		data : {parentId : parentId},
+		success:function(data){
+			if(data.result === true){
+				listCity(data.data.list,$id);
+			}
+		}
+	});
+}
+
+function listCity(l,$id){
+	if(l != undefined){
+		var $opt = $("<option value='0'>请选择</option>");
+		$id.empty().append($opt);
+		for(var i = 0; i < l.length; i ++){
+			var $optC = $('<option value="'+l[i].id+'">'+l[i].name+'</option>');
+			$id.append($optC);
+		}
+	}
+}
+var addSuccess = function(data){
+	if(data.result==true){
+		parent.window._MRHLoader.slowDestroy(700,"修改成功");
+		parent.window._queryOptions.options.page.pageNo = 1;
+		parent.window._queryOptions.query();
+		parent.$(parent._editDialog).dialog("close");
+	}
+};
+
+
+function doSave(form){
+	ajaxSubmitForm(form,addSuccess);
+	event.preventDefault();
+	return false;
+}
+
+
+
+</script>
+</body>
+
+</html>

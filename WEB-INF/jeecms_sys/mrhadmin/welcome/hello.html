@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>admin后台管理</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Le styles -->
+    <script type="text/javascript" src="${base}/mrhweb/css/assets/js/jquery.min.js"></script>
+    <link rel="stylesheet" href="${base}/mrhweb/css/assets/css/style.css">
+    <link rel="stylesheet" href="${base}/mrhweb/css/assets/css/loader-style.css">
+    <link rel="stylesheet" href="${base}/mrhweb/css/assets/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="${base}/mrhweb/css/assets/js/tag/jquery.tagsinput.css">
+	<link href="${base}/mrhweb/css/formStyle.css" rel='stylesheet' type='text/css' />
+	
+	<link rel='stylesheet' type='text/css' href="${base}/js_lib/jquery_ui/css/humanity.css" />
+	<link rel='stylesheet' type='text/css' href="${base}/js_lib/jquery_ui/css/base.css" />
+	
+	<link href="${base}/mrhweb/css/assets/js/footable/css/footable.core.css?v=2-0-1" rel="stylesheet" type="text/css">
+    <link href="${base}/mrhweb/css/assets/js/footable/css/footable.standalone.css" rel="stylesheet" type="text/css">
+    <link href="${base}/mrhweb/css/assets/js/footable/css/footable-demos.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="${base}/mrhweb/css/assets/js/dataTable/lib/jquery.dataTables/css/DT_bootstrap.css">
+    <link rel="stylesheet" href="${base}/mrhweb/css/assets/js/dataTable/css/datatables.responsive.css">
+	
+    <link rel="shortcut icon" href="${base}/mrhweb/css/assets/ico/minus.png">
+    <style>
+    .wel{
+    	color:#34495e;
+    }
+    </style>
+</head>
+
+<body>
+    <!-- Preloader -->
+    <div id="preloader">
+        <div id="status">&nbsp;</div>
+    </div>
+    <!-- TOP NAVBAR -->
+    <nav role="navigation" class="navbar navbar-static-top">
+        <#include "../templateView/navigation.html"/>
+    </nav>
+
+    <!-- /END OF TOP NAVBAR -->
+
+    <!-- SIDE MENU -->
+    <div id="skin-select">
+        <#include "../templateView/skinSelect.html"/>
+    </div>
+    <!-- END OF SIDE MENU -->
+
+
+
+    <!--  PAPER WRAP -->
+    <div class="wrap-fluid">
+        <div class="container-fluid paper-wrap bevel tlbr">
+
+         <h1 class="text-center wel">欢迎你！${user.userExt.realname!user.username}</h1>
+
+            <!-- FOOTER -->
+            <#include "../templateView/footer.html"/>
+            <!-- / END OF FOOTER -->
+
+        </div>
+    </div>
+     <script type="text/javascript" src="${base}/mrhweb/css/assets/js/load.js"></script>
+   <script type="text/javascript" src="${base}/mrhweb/css/assets/js/main.js"></script>
+</body>
+
+</html>

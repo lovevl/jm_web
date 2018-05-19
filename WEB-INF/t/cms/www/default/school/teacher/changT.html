@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>变更班级任课老师</title>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="${base}/mrhweb/css/teachers/base.css">
+    <link rel="stylesheet" href="${base}/mrhweb/css/teachers/changeT.css">
+    <link rel="stylesheet" href="${base}/mrhweb/css/base/style.css">
+    <link rel="stylesheet" href="${base}/mrhweb/css/base/resLogBg.css">
+    <style>
+       
+		
+
+
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#"><span style="color: #98c93c">Sch</span><span style="color:#3ec1ce ">ool</span></a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="navbar-collapse-1">
+
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#">教师登陆</a></li>
+                <li><a href="#">学生登陆</a></li>
+
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+
+<div class="container-fluid min-height">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+        	<div class="teacher-box" >
+            <h5 class="title ">· 变更班级任课老师</h5>
+            <hr>
+            <div class="school_msg">
+                <p>你正在变更<strong>${(t.schl.name)!} <@d_write dictType="gradeType" dictValue="${(t.grade)!}"/> 
+                ${(t.classs)!}班</strong>的<strong><@d_write dictType="subjectType" dictValue="${(t.type)!}"/></strong>老师，
+                变更后该班级的<@d_write dictType="subjectType" dictValue="${(t.type)!}"/>老师将为空，新老师可以重新注册或者在老师个人后台中选定它。</p>
+            </div>
+            <p class="title "><strong>方法一</strong></p>
+            <div>
+                <form id="changeTForm" method="post" action="" onsubmit="doChange(this);">
+                    <input type="hidden" name="id" value="${(t.id)!}">
+                    <input type="hidden" name="classesType" value="">
+                    <input type="hidden" name="message" value="变更成功！">
+                    <div>
+                    	<span class="teacher_name">原教师名字：${(t.name)!}</span>
+                       <span class="input input--hoshi ">
+                            <input name="phone" class="input__field input__field--hoshi" type="text" id="oriTeacherId" readonly="readonly" value="${(t.phone)!}">
+                            <label class="input__label input__label--hoshi input__label--hoshi-color-2" for="oriTeacherId">
+                                <span class="input__label-content input__label-content-static">原教师手机号</span>
+                            </label>
+                        </span>
+                        <button type="button" class="btn btn-teach">发送验证码</button>
+                    </div>
+                    <div>
+                        <span class="input input--hoshi ">
+                            <input name="phoneCode" class="input__field input__field--hoshi" type="text" id="codeId" 
+                            onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" >
+                            <label class="input__label input__label--hoshi input__label--hoshi-color-2" for="codeId">
+                                <span class="input__label-content input__label-content-static">验证码
+                                <span class="errorCode hidden">4位验证码!!!</span>
+                            </label>
+                        </span>
+                        <button type="submit" class="btn btn-teach">确认变更</button>
+                    </div>
+                </form>
+            </div>
+            <p class="title "><strong>方法二</strong></p>
+            <div class="school_msg">
+                <form method="post" action="${base}/teacher/sendMsg.jspx">
+                    <input type="hidden" name="fid" value="${(t.id)!}">
+                    <input type="hidden" name="status" value="发送成功！">
+                    <input type="hidden" name="message" value="变更${(t.schl.name)!} <@d_write dictType="gradeType" dictValue="${(t.grade)!}"/> ${(t.classs)!}班的<@d_write dictType="subjectType" dictValue="${(t.type)!}"/>老师">
+                    <p>联系系统管理员进行变更。点此<a href="#" onclick="submitMsg(this);">发送信息</a>，24小时内处理。</p>
+                </form>
+            </div>
+			</div>
+        </div>
+
+    </div>
+</div>
+<footer >
+    <p class="text-center sm-text">
+        <small>xm.mrh🍓提供技术支持</small>
+    </p>
+</footer>
+
+<script src="${base}/js_lib/jquery/jquery-2.1.4.min.js" ></script>
+<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="${base}/r/cms/jquery.js"></script>
+<script src="${base}/mrhweb/js/commonJs/mrh.js"></script>
+<script src="${base}/mrhweb/js/commonJs/base.js"></script>
+<script src="${base}/mrhweb/js/commonJs/dict.js"></script>
+
+<script>
+	$('.min-height').css('min-height',client().height-102 + "px");
+	if(!"${(t)!}"){
+		window._MRHLoader.load("错误！请检查网址是否正确","wrong","index");
+	}
+    $(function () {
+    	c = {
+    		$form : $("#changeTForm"),
+    		$errorCode : $(".errorCode")
+    	};
+    	 c.$form.find("input[name=phoneCode]").on("keyup",function(){
+    	 	if(this.value.length ==4 )
+    	 		c.$errorCode.addClass("hidden");
+    	 });
+    });
+    
+    doSaveSuccess = function(data){
+	
+		if (data.result == true) {
+			window._MRHLoader.slowDestroy(500,"变更成功，正在跳转...");
+			window.setTimeout(function() {
+			//跳转首页
+				window.location.href = window._BasePath +"/teacher/changeT.jspx" ;
+			}, 500)
+			
+		}else{
+			if(data.message != undefined){
+				window._MRHLoader.slowDestroy(3000,data.message,"wrong");
+			}
+		}
+	}
+	
+	var doChange = function(form){
+		event.preventDefault();
+		var val = $(form).find("input[name=phoneCode]").val();
+		if(val.length != 4 || val == ""){
+			c.$errorCode.removeClass("hidden");
+		}else{
+			form.action=window._BasePath +"/teacher/changeT.jspx" ;
+			ajaxSubmitForm(form, doSaveSuccess);
+		}
+	}
+    
+    
+    
+    var submitMsg = function (obj) {
+        event.preventDefault();
+        if(confirm('变更${(t.schl.name)!} <@d_write dictType="gradeType" dictValue="${(t.grade)!}"/> ${(t.classs)!}班的<@d_write dictType="subjectType" dictValue="${(t.type)!}"/>老师，确认发送？')){
+            $(obj).parents('form').submit();
+            //发送信息成功后跳回首页，后台设置
+        }
+    }
+
+</script>
+</body>
+</html>

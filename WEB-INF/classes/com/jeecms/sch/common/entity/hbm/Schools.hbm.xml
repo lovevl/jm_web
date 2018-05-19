@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.jeecms.sch.common.entity">
+	<class name="Schools" table="sch_schools">
+		<id name="id" column="id" type="string">
+			<generator class="uuid" />
+		</id>
+		<property name="name" column="name" type="string" />
+		<property name="schoolNum" column="school_num" type="integer" />
+		<property name="addr" column="addr" type="string" />
+		<property name="region" column="region" type="string" />
+	 	<list name="typeList" table="sch_type_list">
+	  	  <key column="schl_id"></key>
+	  	  <list-index column="inx"></list-index>
+	  	  <element column="type" type="string"></element>
+	  	</list>
+	</class>
+</hibernate-mapping>

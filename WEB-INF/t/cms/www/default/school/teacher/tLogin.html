@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>教师登录</title>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="${base}/mrhweb/css/teachers/base.css">
+    <link rel="stylesheet" href="${base}/mrhweb/css/base/style.css">
+    <link rel="stylesheet" href="${base}/mrhweb/css/base/resLogBg.css">
+    <!--<script src="js/modernizr.custom.js"></script>-->
+    <style>
+        
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#"><span style="color: #98c93c">Sch</span><span
+                    style="color:#3ec1ce ">ool</span></a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="navbar-collapse-1">
+
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#">教师登陆</a></li>
+                <li><a href="#">学生登陆</a></li>
+
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+
+<div class="container-fluid min-height">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 ">
+            <div class="login-box">
+                <div class="login-form">
+                    <h1 class="text-center title-auth">教师登录</h1>
+                    <form action="" class="form-auth ac-checkmark  ac-custom">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="form-box">
+                                    <label for="phoneId" class="form-label">手机号</label>
+                                    <input id="phoneId" type="text" name="phone" class="form-input schl-form-control">
+                                </div>
+                                <div class="form-box">
+                                    <label for="passwordId" class="form-label">密码</label>
+                                    <input id="passwordId" type="password" name="password"
+                                           class="form-input schl-form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row re-box">
+                            <div class="col-xs-6 ">
+                                <div class="re-padding"><input id="cb6" name="cb6" type="checkbox">
+                                    <label class="remember-label" for="cb6">下次自动登陆</label>
+                                </div>
+                            </div>
+                            <div class="col-xs-6 text-right ">
+                                <a href="#" class="re-margin">忘记密码？</a>
+                            </div>
+                        </div>
+                        <div class="button-box text-center re-box">
+                            <button type="submit" class="btn btn-lg">登录</button>
+                        </div>
+                    </form>
+                    <p class="text-center register"><a href="#">点此注册</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<footer class="l-footer">
+    <p class="text-center sm-text">
+        <small>xm.mrh🍓提供技术支持</small>
+    </p>
+</footer>
+
+<script src="${base}/js_lib/jquery/jquery-2.1.4.min.js" ></script>
+<script src="${base}/mrhweb/js/commonJs/base.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+<script src="${base}/r/cms/jquery.js"></script>
+<script src="${base}/mrhweb/js/commonJs/mrh.js"></script>
+<script src="${base}/mrhweb/js/teacher/checkbox/svgcheckbx.js"></script>
+<script type="text/javascript">
+    $('.min-height').css('min-height', client().height - 102 + "px");
+    $(function () {
+
+    });
+
+
+</script>
+</body>
+</html>

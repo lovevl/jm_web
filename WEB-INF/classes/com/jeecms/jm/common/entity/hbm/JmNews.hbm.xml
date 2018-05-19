@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.jeecms.jm.common.entity">
+	<class name="JmNews" table="jm_news">
+		<id name="id" column="id" type="string">
+			<generator class="uuid" />
+		</id>
+		<property name="imgUrl" column="img_url" type="string" />
+		<property name="title" column="title" type="string" />
+		<property name="num" column="num" type="integer" />
+		<property name="author" column="author" type="string" />
+		<property name="segment" column="segment" type="string" />
+		<property name="detail" column="detail" type="string" />
+		<property name="type" column="type" type="string" />
+		<property name="url" column="url" type="string" />
+		<property name="sign" column="sign" type="string" />
+		<property name="pubTime" column="pub_time" type="timestamp" />
+		<property name="publish" column="publish" type="string" />
+		<property name="recommend" column="recommend" type="java.lang.Boolean" />
+		<property name="tags" column="tags" type="string" />
+		<list name="relateUrls" table="jm_relate_urls">
+	  	  <key column="jm_id"></key>
+	  	  <list-index column="inx"></list-index>
+	  	  <element column="relate_url" type="string"></element>
+	  	</list>
+	</class>
+</hibernate-mapping>

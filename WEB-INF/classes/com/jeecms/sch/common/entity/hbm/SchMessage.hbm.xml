@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.jeecms.sch.common.entity">
+	<class name="SchMessage" table="sch_message">
+		<id name="id" column="id" type="string">
+			<generator class="uuid" />
+		</id>
+		<property name="type" column="type" type="string" />
+		<property name="fid" column="f_id" type="string" />
+		<property name="message" column="message" type="string" />
+		<property name="createTime" column="create_time" type="timestamp" />
+		<property name="deal" column="deal" type="java.lang.Boolean" />
+	 	
+	</class>
+</hibernate-mapping>

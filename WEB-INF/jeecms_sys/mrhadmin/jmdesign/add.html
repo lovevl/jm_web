@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="${base}/mrhweb/css/bootstrap/bootstrap.min.css">
+    <title>添加实景设计图片信息</title>
+    <style>
+        textarea{
+            resize: none;
+        }
+        .margin-btm{
+        	margin-bottom : 40px;
+        }
+        input[type=text]+label{
+        	color:red;
+        	font-weight : normal;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container-fluid paper-wrap bevel tlbr">
+    <h3 class="text-center">添加实景设计的图片信息</h3>
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1 ">
+            <form id="designForm" class="form-horizontal" method="post" action="${base}/governor/designAd/save.json" onsubmit="return doSave(this);">
+                <div class="form-group">
+                    <label for="" class="col-sm-2 control-label">编号：</label>
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control" name="num" 
+                        onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')"
+                        placeholder="只允许数字，可空，默认系统自动分配5位随机数。">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="" class=" col-sm-2 control-label">图片路径：</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="imgUrl" placeholder="七牛云的图片路径">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="" class="col-sm-2 control-label">图片大小：</label>
+                    <div class="col-sm-2">
+                        <input type="text" name="size" class="form-control"
+                        onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')"
+                         placeholder="KB">
+                    </div>
+                    <label for="" class="col-sm-1 control-label">宽：</label>
+                    <div class="col-sm-1">
+                        <input type="text" name="width" class="form-control" 
+                        onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')"
+                        placeholder="像素">
+                    </div>
+                    <label for="" class="col-sm-1 control-label">高：</label>
+                    <div class="col-sm-1">
+                        <input type="text" name="height" class="form-control"
+                        onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')"
+                         placeholder="像素">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="" class="col-sm-2 control-label">标题：</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="title" placeholder="图片标题">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="" class=" col-sm-2 control-label">上传时间：</label>
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control" name="updateTime" placeholder="可选，默认表单提交的时间" onClick="WdatePicker({el:this,dateFmt:'yyyy-MM-dd HH:mm:ss'})">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="" class=" col-sm-2 control-label">图片作者：</label>
+                    <div class=" col-sm-4">
+                        <input type="text"  class="form-control" name="author" value="" placeholder="作者"  />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="" class="col-sm-2 control-label">空间：</label>
+                    <div class="col-sm-10" id="room_type_id">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="" class="col-sm-2 control-label">风格：</label>
+                    <div class="col-sm-10" id="style_type_id">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="" class="col-sm-2 control-label">工艺：</label>
+                    <div class="col-sm-10" id="method_type_id">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="" class="col-sm-2 control-label">标记：</label>
+                    <div class="col-sm-4">
+                        <input type="text" name="sign" class="form-control" placeholder="可选，备用属性">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="" class="col-sm-2 control-label">图片描述：</label>
+                    <div class="col-sm-10">
+                        <textarea name="detail" class="form-control" id=""  rows="5"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="" class="col-sm-2 control-label">推荐：</label>
+                    <div class="col-sm-2">
+                        <input type="radio" name="recommend" checked="" id="recommendFalse"><label for="recommendFalse">否</label>
+                        <input type="radio" name="recommend" id="recommendTrue"><label for="recommendTrue">是</label>
+                    </div>
+                    <label for="" class="col-sm-2 control-label">点赞数量：</label>
+                    <div class="col-sm-2">
+                        <input type="text" name="praise" class="form-control"
+                        onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')"
+                         placeholder="备用属性">
+                    </div>
+                </div>
+                <div class="text-center sub margin-btm"><button type="submit" class="btn btn-info">提交</button></div>
+            </form>
+        </div>
+    </div>
+</div>
+<script src="${base}/thirdparty/My97DatePicker/WdatePicker.js"></script>
+<script src="${base}/js_lib/jquery/jquery-2.1.4.min.js"></script>	
+<script src="${base}/r/cms/jquery.js"></script>
+<script src="${base}/mrhweb/js/commonJs/dict.js"></script>
+<script src="${base}/mrhweb/js/commonJs/mrh.js"></script>
+<script>
+$(function(){
+	var $form = $("#designForm");
+	/* $form.find("input[name=realname]").attr("vld", "{required:true,username:true,minlength:[3]}");
+	$form.find("input[name=password]").attr("vld", "{required:true,rangelength:[6,12]}");
+	$form.find("input[name=mobile]").attr("vld", "{required:false,phone:true}"); 
+ 	$form.find("#surePwdId").attr("vld", "{required:true}").attr("equalto", "#passwordId"); */
+	$form.find("input[name=num]").attr("vld", "{required:false,remote:'${base}/unique_num.jspx',messages:{remote:'编号已存在'}}");
+	$form.validate();
+	window._initDict(["roomType","styleType","methodType"]);
+	init = {
+		$room : $('#room_type_id'),
+		$style : $('#style_type_id'),
+		$method : $('#method_type_id')
+	}
+	initTypes();
+});
+
+initTypes = function(){
+	for(var val in window._dictEntitys["roomType"]){
+		init.$room.append('<input type="checkbox" name="roomType" value="'+val+'" id="room'+val+'"><label for="room'+val+'">'+window._dictEntitys["roomType"][val]+'</label>')
+	}
+	for(var val in window._dictEntitys["styleType"]){
+		init.$style.append('<input type="checkbox" name="styleType" value="'+val+'" id="style'+val+'"><label for="style'+val+'">'+window._dictEntitys["styleType"][val]+'</label>')
+	}
+	for(var val in window._dictEntitys["methodType"]){
+		init.$method.append('<input type="checkbox" name="methodType" value="'+val+'" id="method'+val+'"><label for="method'+val+'">'+window._dictEntitys["methodType"][val]+'</label>')
+	}
+}
+
+var addSuccess = function(data){
+	if(data.result==true){
+		parent.window._MRHLoader.slowDestroy(700,"添加成功");
+		parent.window._queryOptions.options.page.pageNo = 1;
+		parent.window._queryOptions.query();
+		parent.$(parent._editDialog).dialog("close");
+	}
+};
+
+function doSave(form){
+	ajaxSubmitForm(form,addSuccess);
+	event.preventDefault();
+	return false;
+}
+</script>
+</body>
+</html>

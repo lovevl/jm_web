@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>境美新闻</title>
+    
+    <link rel="stylesheet" href="${base}/mrhweb/jm/css/news.css">
+    <!--<script src="css/icon/iconfont.js"></script>-->
+    <style>
+
+
+    </style>
+</head>
+<body>
+
+<#include "../template/nav.html"/>
+<div class="container addr">
+    <p>你所在位置：<a href="${base}">首页</a>
+	<i class="iconfont icon-xiangyou"></i><a href="${base}/news/jmn.jhtml">新鲜事</a>
+	<i class="iconfont icon-xiangyou"></i><a href="#" class="no-click">装修小知识</a></p>
+    <hr>
+</div>
+<section class="left-menu" id="menu_id">
+    <div class="container">
+        <div class="">
+            <div class="menu-bar " id="menu_bar_id">
+                <ul>
+                    <li>
+                        <a href="${base}/news/jmn.jhtml">
+                        <span class="color-block"><i class="iconfont icon-menu icon-news_icon"></i></span>
+                        <span class="link">境美新闻</span>
+                    </a></li>
+                    <li><a href="${base}/news/hy.jhtml">
+                        <span class="color-block"><i class="iconfont icon-menu icon-xinwen"></i></span>
+                        <span class="link">行业新闻</span>
+                    </a></li>
+                    <li><a href="${base}/news/gzn.jhtml">
+                        <span class="color-block"><i class="iconfont icon-menu icon-query-knowledge"></i></span>
+                        <span class="link">硅藻泥小知识</span>
+                    </a></li>
+                    <li class="active"><a href="#">
+                        <span class="color-block"><i class="iconfont icon-menu icon-zhishiku"></i></span>
+                        <span class="link">装修小知识</span>
+                    </a></li>
+                </ul>
+                <div class="service hidden-xs" id="service_id">
+                    <a href="#"><i class="iconfont icon-menu-1 icon-iconda"></i><span><strong>我要装修</strong><span class="miaoshu">7项免费钻石服务</span></span></a>
+                    <a href="#"><i class="iconfont icon-menu-1 icon-fuwuzhongxin"></i><span><strong>售后服务</strong><span class="miaoshu">7*24小时贴心服务</span></span></a>
+                    <a href="#"><i class="iconfont icon-menu-1 icon-building_"></i><span><strong>体验中心</strong><span class="miaoshu">查看效果图</span></span></a>
+                    <a href="#"><i class="iconfont icon-menu-1 icon-tupian1"></i><span><strong>在线选图</strong><span class="miaoshu">给新家设计一下吧</span></span></a>
+                </div>
+            </div>
+            <div class="news-content menu-content shadow-c  ">
+                <div>
+                    <ul id="news_list_id">
+
+                    </ul>
+                    <div class="pagination pagination-centered">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<#include "../template/foot.html"/>
+
+
+
+<script src="${base}/mrhweb/jm/js/pageCount.js"></script>
+<script src="${base}/mrhweb/jm/js/news.js"></script>
+<script>
+var tag = "";
+$(function () {
+    n.initOptionsFn();
+    n.options.type = 4;
+    n.querys();
+});
+
+//        <li>
+//            <div class="row">
+//                <div class="col-xs-4 col-md-3 img">
+//                <!--<img src="../img/design/1.jpg" alt="">-->
+//                    <div class="img-box">140*110</div>
+//                <!--新闻图片-->
+//                </div>
+//                <div class="col-xs-8 col-md-9 body ">
+//                    <p class="title"><a href="#">境美硅藻泥荣获“硅藻新材料品牌建设奖”之中国生态环境建材行业“百花奖“</a></p>
+//                    <p class="content">2017年10月29-30日,以"深化改革、科技引领、创新发展、同创共赢"为主题的第十二届生态环境建材产业论坛暨第五届全国硅藻新材料行业发展研讨会在北京通州太阳花酒店顺利召开.
+//                        第十二届生态环境建材产业论坛暨第五届全国硅藻新材料行业发展研讨会在北京通州太阳花酒店顺利召开</p>
+//                    <span>2018-01-24</span>
+//                </div>
+//            </div>
+//            <div class="e-border-line"></div>
+//            <div class="f-border-line"></div>
+//        </li>
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.jeecms.jm.common.entity">
+	<class name="JmPictures" table="jm_pictures">
+		<id name="id" column="id" type="string">
+			<generator class="uuid" />
+		</id>
+		<property name="num" column="num" type="integer" />
+		<property name="imgUrl" column="img_url" type="string" />
+		<property name="title" column="title" type="string" />
+		<property name="author" column="author" type="string" />
+		<property name="detail" column="detail" type="string" />
+		<property name="type" column="type" type="string" />
+		<property name="roomType" column="room_type" type="string" />
+		<property name="styleType" column="style_type" type="string" />
+		<property name="methodType" column="method_type" type="string" />
+		<property name="updateTime" column="update_time" type="timestamp" />
+		<property name="praise" column="praise" type="integer" />
+		<property name="recommend" column="recommend" type="java.lang.Boolean" />
+		<property name="size" column="size" type="integer" />
+		<property name="width" column="width" type="integer" />
+		<property name="height" column="height" type="integer" />
+		<property name="sign" column="sign" type="string" />
+	</class>
+</hibernate-mapping>
